@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <div class="buttons has-addons">
-      <button id="day-button" @click="getDayEvents" class="button"
+      <button id="day-button" @click="this.period = 'day'; getEvents()" class="button"
       v-bind:class="{'is-active is-black': isDay}">Day</button>
-      <button id="week-button" @click="getWeekEvents" class="button"
+      <button id="week-button" @click="this.period = 'week'; getEvents()" class="button"
       v-bind:class="{'is-active is-black': isWeek}">Week</button>
     </div>
     <input class="calendar" type="date"/>
@@ -74,6 +74,7 @@ export default {
   },
   mounted() {
     this.period = this.$store.state.period;
+    document.title = 'Timetable'
 
     const calendar = bulmaCalendar.attach(this.$refs.calendarTrigger, {
       startDate: new Date(),
@@ -96,13 +97,12 @@ export default {
     })
   },
   methods: {
-    getDayEvents() {
-      this.period = 'day';
+    async getDayEvents() {
       this.isDay = true;
       this.isWeek = false;
 
       this.$store.commit('changePeriod', this.period);
-      axios
+      await axios
           .get('/api/v1/day/'  + this.niceDate)
           .then((response => {
             this.dayEvents = response.data
@@ -111,13 +111,12 @@ export default {
             console.log(error)
           }))
     },
-    getWeekEvents() {
-      this.period = 'week';
+    async getWeekEvents() {
       this.isDay = false;
       this.isWeek = true;
 
       this.$store.commit('changePeriod', this.period);
-      axios
+      await axios
           .get('/api/v1/week/'  + this.niceDate)
           .then((response => {
             this.days = response.data
@@ -126,12 +125,15 @@ export default {
             console.log(error)
           }))
     },
-    getEvents() {
+    async getEvents() {
+      this.$store.commit('setIsLoading', true)
       if (this.period === 'day') {
-        this.getDayEvents();
+        await this.getDayEvents();
       } else if (this.period === 'week') {
-        this.getWeekEvents();
+        await this.getWeekEvents();
       }
+      this.$store.commit('setIsLoading', false)
+
     }
   },
   computed: {
