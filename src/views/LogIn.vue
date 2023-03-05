@@ -25,7 +25,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <button class="button is-dark">Log in</button>
+                            <button class="button is-black">Log in</button>
                         </div>
                     </div>
 
@@ -54,10 +54,11 @@ export default {
   },
   methods: {
     async submitForm() {
+      this.errors = []
       axios.defaults.headers.common["Authorization"] = ""
       localStorage.removeItem("token")
 
-      const formDate = {
+      const formData = {
         username: this.username,
         password: this.password
       }

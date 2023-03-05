@@ -17,8 +17,11 @@
 
         </div>
         <div class="navbar-item">
-          <div class="buttons">
+          <div v-if="!$store.state.isAuthenticated" class="buttons">
             <router-link to="/log-in" class="button is-black">Log in</router-link>
+          </div>
+          <div v-if="$store.state.isAuthenticated" class="buttons">
+            <router-link to="/my-account" class="button is-black">MyAccount</router-link>
           </div>
         </div>
       </div>
