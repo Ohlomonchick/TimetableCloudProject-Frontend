@@ -1,4 +1,4 @@
-FROM node:19-buster-slim
+FROM node:lts-alpine
 
 # install simple http server for serving static content
 RUN npm install -g http-server
@@ -11,7 +11,7 @@ COPY package*.json .
 
 COPY entrypoint.sh .
 
-ENV VUE_APP_DJANGO_HOST="http://127.0.0.1"
+ENV DJANGO_HOST="http://127.0.0.1"
 
 # install project dependencies
 
