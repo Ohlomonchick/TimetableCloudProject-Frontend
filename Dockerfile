@@ -11,8 +11,6 @@ COPY package*.json .
 
 COPY entrypoint.sh .
 
-ENV DJANGO_HOST="http://127.0.0.1"
-
 # install project dependencies
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
@@ -22,4 +20,4 @@ RUN npm install
 
 RUN chmod +x entrypoint.sh
 EXPOSE 8080
-CMD [ "/app/entrypoint.sh" ]
+CMD [ "npm run build && npm run serve" ]
