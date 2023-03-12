@@ -3,7 +3,7 @@
     <nav class="navbar is-info">
 
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><strong>Timetable</strong></router-link>
+        <router-link to="/" class="navbar-item"><img src="@/assets/logo_big.png"/><strong>Timetable</strong></router-link>
 
         <a class="navbar-burger" v-bind:class="{ 'is-active': showMobileMenu }" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
           <span aria-hidden="true"></span>
