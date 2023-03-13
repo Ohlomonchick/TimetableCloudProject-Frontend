@@ -4,6 +4,6 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
-axios.defaults.baseURL = process.env.VUE_APP_DJANGO_HOST + ':8000'
+axios.defaults.baseURL = process.env.VUE_APP_DJANGO_HOST + process.env.VUE_APP_DJANGO_PORT
 
 createApp(App).use(store).use(router).mount('#app')
