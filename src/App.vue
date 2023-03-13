@@ -1,18 +1,17 @@
 <template>
-  <div id="wrapper">
-    <nav class="navbar is-info">
+  <div id="wrapper" class="hero is-fullheight">
+    <nav class="navbar is-info hero">
 
-      <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><img src="@/assets/logo_big.png"/><strong>Timetable</strong></router-link>
+              <div class="navbar-brand" v-bind:class="{ 'is-active': !showMobileMenu }">
+        <router-link to="/" class="navbar-item "><img src="@/assets/logo_big.png"/><strong>Timetable</strong></router-link>
 
         <a class="navbar-burger" v-bind:class="{ 'is-active': showMobileMenu }" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-      </div>
 
-      <div class="navbar-menu" id="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
+              <div class="navbar-menu" id="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
         <div class="navbar-end">
 
         </div>
@@ -25,6 +24,7 @@
           </div>
         </div>
       </div>
+      </div>
 
     </nav>
 
@@ -35,12 +35,12 @@
       <router-view/>
     </section>
 
-    <footer class="footer">
+    <footer class="footer mt-auto">
       <div class="content has-text-centered">
         <p>
-          <strong>Timetable</strong> by <a href="">Dmitry</a>,
-          <a href="">Gosha</a>, <a href="">Vova</a>, <a href="">Sasha</a>,
-          <a href="">Lionelya Messi</a>
+          <strong>Timetable</strong> by <a href="https://github.com/Ohlomonchick">Dmitry</a>,
+          <a href="https://github.com/i80287">Vova</a>, <a href="https://t.me/Alexandr_Shevchenko04">Sasha</a>, <a href="https://t.me/SergeevDim">Lionelya Messi</a>,
+          <a href="https://t.me/EvgeniyB2077">Zhenya</a>, <a href="https://t.me/xzescha">Gosha</a>.
         </p>
       </div>
     </footer>
@@ -72,6 +72,7 @@ export default {
 <style lang="scss">
 @import '../node_modules/bulma';
 
+html, body, wrapper { height: 100vh; }
 .lds-dual-ring {
   display: inline-block;
   width: 80px;

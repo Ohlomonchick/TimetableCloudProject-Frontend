@@ -6,9 +6,12 @@
             <h2 class="title is-grey-dark">My groups: </h2>
             <div v-for="group in user.participant_groups" class="box">
               <h3 class=" is-dark">{{ group.name }}</h3>
-          </div>
+            </div>
           </div>
 
+          <div v-if="user.is_staff" class="column is-12">
+              <router-link to="/admin" class="button is-grey-dark">Admin-Panel</router-link>
+          </div>
           <div class="column is-12">
               <button @click="logout()" class="button is-danger">Log out</button>
           </div>
